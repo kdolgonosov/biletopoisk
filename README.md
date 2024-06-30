@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Фильмопоиск
 
-Currently, two official plugins are available:
+React, TypeScript, Redux Toolkit, Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+##  Запуск приложения
+```sh
+npm i
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+##  Реализовано:
+### Шапка:
+- [x] Липкая шапка
+
+### Авторизация:
+- [x] Для реализации модального окна используется портал
+- [x] -   После успешной авторизации кнопка «Войти» меняется на заглушку иконки пользователя и кнопку «Выйти»;
+    - [x]  Сохраняем авторизационный токен из ответа ручки бэка  `/login`  (например, в localStorage);
+    - [x]  С токеном стоит работать через thunk;
+    - [x]  По клику на кнопку «Выйти» удаляем токен и снимаем авторизацию;
+    - [x] При инициализации приложения проверяем авторизационный токен;
+### Страница поиска фильмов:
+- [x] Поиск:
+    - [x] Поиск происходит во время ввода пользователем символов. Дёргаем ручку  `/search`;
+- [x] Фильтры:
+    - [x] Реализованы фильтры с dropdown (дефолтные селекты);
+    - [x] Фильтры сохраняются в query-params;
+- [x] Реализован список фильмов с пагинацией;
+### Страница фильма:
+- [x]   Реализована работа с получением данных:
+	- [x]  Дёргаем ручку  `/movie:id`;
+	- [x]  Соответствующие данные отрисованы;
+- [x] Возможность поставить оценку:
+	- [x]  Оценку для фильма достаём из ручки  `/movie/:id`;
+	- [x]  Если пользователь авторизован, даём возможность поставить оценку — запрос мутации;
+	- [x]  После выставления оценки обновляем кеш запроса  `/movie/:id`;
+
+### Общий функционал:
+
+- [x]  Реализован лоадер;
+- [x]  Используем debounce для поиска фильма
+
+### Стор:
+
+- [x] Используется rtk и rtk-query;
+- [x] Данные корректно разбиты на модули (пример — авторизация, searchParams из фильтров);
+- [x] Селекторы написаны оптимально (нет переизбытка дублирования);
