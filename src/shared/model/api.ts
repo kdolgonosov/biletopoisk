@@ -41,7 +41,7 @@ export const moviesApi = createApi({
                     user_rate,
                 },
             }),
-            async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+            async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled;
                     dispatch(
@@ -49,7 +49,9 @@ export const moviesApi = createApi({
                             Object.assign(draft, { rating: data.newAverageRate });
                         }),
                     );
-                } catch {}
+                } catch (error) {
+                    console.log(error);
+                }
             },
         }),
         getMovie: builder.query({

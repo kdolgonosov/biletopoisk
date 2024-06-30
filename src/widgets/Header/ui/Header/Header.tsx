@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/shared/ui/Button/Button';
 import styles from './Header.module.css';
 import { useState } from 'react';

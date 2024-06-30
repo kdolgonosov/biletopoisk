@@ -1,4 +1,6 @@
+'use client';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+// import { useEffect } from 'react';
 export const userLogin = createAsyncThunk<
     { token: string },
     { username: string; password: string },
@@ -19,9 +21,12 @@ export const userLogin = createAsyncThunk<
         return rejectWithValue(error);
     }
 });
-
+// let token, logged = '', false
+// useEffect(() => {
 const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 const logged = localStorage.getItem('token') ? true : false;
+
+// }, [])
 const initialState = {
     loading: false,
     //   userInfo: null,
@@ -55,7 +60,7 @@ export const authSlice = createSlice({
                 //   state.userInfo = payload
                 state.token = payload.token;
             })
-            .addCase(userLogin.rejected, (state, { payload }) => {
+            .addCase(userLogin.rejected, (state) => {
                 state.loading = false;
                 state.logged = false;
                 // state.error = payload

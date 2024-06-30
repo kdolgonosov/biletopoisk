@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import Image from 'next/image';
 import styles from './MoviePageCard.module.css';
 import { useAppSelector } from '@/shared/model/hooks';
 import { Rating } from '@/features/Rating/ui/Rating';
@@ -24,7 +25,7 @@ export const MoviePageCard = ({
     const logged = useAppSelector((state) => state.auth.logged);
     return (
         <div className={styles.card}>
-            <img src={poster} alt='' className={styles.poster} />
+            <Image src={poster} width={400} height={500} alt='' className={styles.poster} />
             <div className={styles.card_info}>
                 <h1 className={styles.card_info_title}>{title}</h1>
                 <span className={styles.card_info_item}>

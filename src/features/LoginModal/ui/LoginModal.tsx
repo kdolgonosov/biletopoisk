@@ -13,7 +13,7 @@ export const LoginModal = ({ handleOpen }: any) => {
     const dispatch = useAppDispatch();
     const submitForm = () => {
         dispatch(userLogin({ username, password }))
-            .then((result) => {
+            .then(() => {
                 handleOpen(false);
             })
             .catch((error) => {

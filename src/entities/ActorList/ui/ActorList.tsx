@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef } from 'react';
 import cn from 'classnames';
 import styles from './ActorList.module.css';
