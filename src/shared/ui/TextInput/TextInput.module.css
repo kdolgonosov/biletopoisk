@@ -1,0 +1,17 @@
+.input {
+    border: 1px solid #e1e3e6;
+    width: 400px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+.error {
+    border: 1px solid #f04075;
+}
+.input:focus {
+    border: 0;
+    outline: 1px solid var(--accent-orange);
+}

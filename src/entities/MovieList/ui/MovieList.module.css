@@ -1,0 +1,48 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+}
+.pagination_button {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 0;
+    box-shadow: 0px 0px 4px 0px #0000004d;
+}
+.pagination_button::after {
+    position: absolute;
+    content: '';
+    top: 0%;
+    left: 0%;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* transform: translate(50%, 50%); */
+}
+.pagination_button_type_next::after {
+    background-image: url(../../../assets/arrow-right.svg);
+}
+.pagination_button_type_prev::after {
+    background-image: url(../../../assets/arrow-left.svg);
+}
+.pagination_button:hover {
+    cursor: pointer;
+}
+.pagination_button:disabled {
+    background-color: #e9eaed;
+    opacity: 0.3;
+}
+.pagination_button:disabled:hover {
+    cursor: default;
+}
+.pagination_page {
+    margin: 0 12px;
+    /* font-family: SF Pro Text; */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}

@@ -1,0 +1,42 @@
+.input {
+    border: 0;
+    width: 400px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 12px 12px 12px 36px;
+    background-image: url(../../../assets/search-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 16px;
+    /* margin: 20px 0 16px; */
+    margin-bottom: 16px;
+}
+.input:focus {
+    border: 0;
+    outline: 1px solid var(--accent-orange);
+}
+.wrapper {
+    position: relative;
+}
+.button {
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(calc(-50% - 8px));
+    background-color: transparent;
+    background-image: url(../../../assets/close.svg);
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
+    border: 1px solid #999fa6;
+    border-radius: 50%;
+}
+
+.button:hover {
+    cursor: pointer;
+}

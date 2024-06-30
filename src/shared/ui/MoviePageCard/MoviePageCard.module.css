@@ -1,0 +1,41 @@
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+}
+.poster {
+    width: 400px;
+    height: 500px;
+    border-radius: 8px;
+    margin-right: 32px;
+}
+.card_info {
+    display: flex;
+    flex-direction: column;
+}
+.card_info_title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 32px;
+    margin-bottom: 36px;
+}
+.card_info_item {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+}
+.card_info_item_bold {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: none;
+}
+.card_info_text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
