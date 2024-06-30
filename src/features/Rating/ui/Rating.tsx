@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import styles from './Rating.module.css';

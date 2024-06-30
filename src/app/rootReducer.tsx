@@ -1,3 +1,4 @@
+'use client';
 import { combineReducers } from '@reduxjs/toolkit';
 // import { filterSlice } from 'features/catalog/FilterBar/model/slice';
 import { filterSlice } from '@/features/Filter/model/slice';

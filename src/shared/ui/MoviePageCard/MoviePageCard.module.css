@@ -6,8 +6,8 @@
     flex-direction: row;
 }
 .poster {
-    width: 400px;
-    height: 500px;
+    /* width: 400px;
+    height: 500px; */
     border-radius: 8px;
     margin-right: 32px;
 }

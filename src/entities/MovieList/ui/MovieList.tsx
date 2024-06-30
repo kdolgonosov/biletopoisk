@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import styles from './MovieList.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/model/hooks';
 import moviesApi from '@/shared/model/api';
@@ -7,21 +7,19 @@ import cn from 'classnames';
 import { IMovieCard, MovieCard } from '@/shared/ui/MovieCard/MovieCard';
 import { Loader } from '@/shared/ui/Loader/Loader';
 import { NothingFound } from '@/shared/ui/NothingFound/NothingFound';
+// import { useParams } from 'next/navigation';
 
 export const MovieList = () => {
     const page = useAppSelector((state) => state.movieListPage.page);
     const genre = useAppSelector((state) => state.filter.selectedGenre);
     const release_year = useAppSelector((state) => state.filter.selectedYear);
     const title = useAppSelector((state) => state.searchString.searchString);
+    const params = { genre, release_year, title };
     const dispatch = useAppDispatch();
-    const { data, error, isLoading, isFetching } = moviesApi.useGetMoviesQuery({
-        page,
-        genre,
-        release_year,
-        title,
+    const { data, error, isLoading, isFetching } = moviesApi.useGetMoviesQuery(params, {
+        skip: !params,
     });
-    // const products: IData = isFetching && page === 1 ? null : data;
-
+    // console.log(searchParams);
     if (error) return <p>Error!</p>;
     if (isLoading || isFetching) return <Loader />;
     if (data.search_result.length === 0) return <NothingFound />;

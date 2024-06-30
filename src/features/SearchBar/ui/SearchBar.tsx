@@ -1,24 +1,35 @@
+'use client';
 import { ChangeEvent, useState } from 'react';
 import styles from './SearchBar.module.css';
 import { useAppDispatch } from '@/shared/model/hooks';
 import { useDebouncedCallback } from 'use-debounce';
 import { setSearchString } from '../model/slice';
 import { resetPage } from '@/entities/MovieList/model/slice';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 
 export const SearchBar = () => {
     const dispatch = useAppDispatch();
     const [inputValue, setInputValue] = useState('');
-    let [searchParams, setSearchParams] = useSearchParams();
+    // let [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams();
+    function updateParams(value: string) {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('title', value);
+        if (value.length === 0) {
+            params.delete('title');
+        }
+        window.history.pushState(null, '', `/search?${params.toString()}`);
+    }
     const debounced = useDebouncedCallback((value) => {
         dispatch(resetPage());
-        if (value.length > 0) {
-            searchParams.set('title', value);
-            setSearchParams(searchParams);
-        } else {
-            searchParams.delete('title');
-            setSearchParams(searchParams);
-        }
+        updateParams(value);
+        // if (value.length > 0) {
+        //     searchParams.set('title', value);
+        //     setSearchParams(searchParams);
+        // } else {
+        //     searchParams.delete('title');
+        //     setSearchParams(searchParams);
+        // }
         dispatch(setSearchString(value));
     }, 700);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,9 +1,10 @@
+'use client';
 import { ChangeEvent } from 'react';
 import styles from './Filter.module.css';
 import { useAppDispatch } from '@/shared/model/hooks';
 import { setGenre, setYear } from '../model/slice';
 import { resetPage } from '@/entities/MovieList/model/slice';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 
 type Genre =
     | '0'
@@ -48,28 +49,24 @@ const years: Record<Year, string> = {
     '1950-1989': '1950-1989',
 };
 export const Filter = () => {
-    let [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams();
+    function updateParams(value: string, key: string) {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set(key, value);
+        if (value === '0') {
+            params.delete(key);
+        }
+        window.history.pushState(null, '', `/search?${params.toString()}`);
+    }
     const dispatch = useAppDispatch();
     const handleSetGenreFilter = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setGenre(e.target.value));
-        if (e.target.value !== '0') {
-            searchParams.set('genre', e.target.value);
-            setSearchParams(searchParams);
-        } else {
-            searchParams.delete('genre');
-            setSearchParams(searchParams);
-        }
+        updateParams(e.target.value, 'genre');
         dispatch(resetPage());
     };
     const handleSetYearFilter = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setYear(e.target.value));
-        if (e.target.value !== '0') {
-            searchParams.set('year', e.target.value);
-            setSearchParams(searchParams);
-        } else {
-            searchParams.delete('year');
-            setSearchParams(searchParams);
-        }
+        updateParams(e.target.value, 'year');
         dispatch(resetPage());
     };
     return (
